@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <%= link_to image_tag("favicon.svg", alt: "favicon", height: 50), root_url, class: 'navbar-logo' %>
+            <%= link_to "Cook-up", root_url, class: 'navbar-title' %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><%= link_to "Home", root_url %></li>
+                <li><%= link_to "Search", '#' %></li>
+                <li><%= link_to "My List", '#' %></li>
+                <li><%= link_to "Post Recipe", '#' %></li>
+                <li><%= link_to "Config", '#' %></li>
+            </ul>
+        </div>
+    </div>
+</nav>
