@@ -21,7 +21,7 @@
 
 # database.
 config/database.yml
-/db/*
+/db/seeds.rb
 dump.rdb
 
 config/cable.yml
