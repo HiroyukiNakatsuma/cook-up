@@ -127,4 +127,24 @@ class AccountTest < ActiveSupport::TestCase
     assert_equal mixed_case_email.downcase, @account.reload.email
   end
 
+  test "password should not be nil" do
+    @account.password = @account.password_confirmation = nil
+    assert_not @account.valid?
+  end
+
+  test "password should be present" do
+    @account.password = @account.password_confirmation = " " * 6
+    assert_not @account.valid?
+  end
+
+  test "password should have a minimum length" do
+    @account.password = @account.password_confirmation = "a" * 5
+    assert_not @account.valid?
+  end
+
+  test "password should not be equal confirmation" do
+    @account.password = "hogefuga"
+    assert_not @account.valid?
+  end
+
 end
