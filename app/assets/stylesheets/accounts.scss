@@ -1,3 +1,23 @@
-// Place all the styles related to the Accounts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+h1 {
+  text-align: center;
+}
+
+/* forms */
+.account-form-input {
+  margin-bottom: 20px;
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+input {
+  height: auto !important;
+}
+
+.btn {
+  margin-top: 10px;
+}
