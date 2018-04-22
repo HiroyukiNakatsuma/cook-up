@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    attributes:
+      account:
+        last_name: 姓
+        first_name: 名
+        user_name: ユーザネーム
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+    errors:
+      models:
+        account:
+          attributes:
+            user_name:
+              invalid: には英数字(a～z、A～Z、0～9)とピリオド(.)のみ使用できます。
+            email:
+              invalid: の書式が違います。
+            password:
+              blank: の入力は必須です。
+            password_confirmation:
+              confirmation: がパスワードと一致しません。
+  validations:
+    blank: の入力は必須です。
+    over_length: は%{max_length}文字以内で入力してください。
+    not_enough_length: は%{min_length}文字以上で入力してください。
+    not_within_length_range: は%{min_length}文字以上%{max_length}文字以内で入力してください。
+    already_used: はすでに使用されています。
