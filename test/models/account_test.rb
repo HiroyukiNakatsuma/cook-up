@@ -5,10 +5,10 @@ class AccountTest < ActiveSupport::TestCase
   def setup
     @account = Account.new(last_name: "Sample",
                            first_name: "Test",
-                           user_name: "Test.01",
+                           user_name: "Test01",
                            email: "account@example.com",
-                           password: "foobar",
-                           password_confirmation: "foobar")
+                           password: "foobar01",
+                           password_confirmation: "foobar01")
   end
 
   test "should be valid" do
@@ -69,12 +69,14 @@ class AccountTest < ActiveSupport::TestCase
     assert_not @account.valid?
     @account.user_name = "-_<>?=+あ阿α∀"
     assert_not @account.valid?
+    @account.user_name = "123456"
+    assert_not @account.valid?
   end
 
   test "user name should be unique" do
     assert @account.save
     same_user_name_account = @account.dup
-    same_user_name_account.user_name = "Test.01"
+    same_user_name_account.user_name = "Test01"
     same_user_name_account.email = "account01@example.com"
     assert_not same_user_name_account.valid?
   end
@@ -113,7 +115,7 @@ class AccountTest < ActiveSupport::TestCase
   test "email should be unique" do
     assert @account.save
     same_email_account = @account.dup
-    same_email_account.user_name = "Test.02"
+    same_email_account.user_name = "Test02"
     same_email_account.email = "account@example.com"
     assert_not same_email_account.valid?
     same_email_account.email.upcase!
@@ -139,6 +141,11 @@ class AccountTest < ActiveSupport::TestCase
 
   test "password should have a minimum length" do
     @account.password = @account.password_confirmation = "a" * 5
+    assert_not @account.valid?
+  end
+
+  test "password should have number" do
+    @account.password = @account.password_confirmation = "a" * 6
     assert_not @account.valid?
   end
 

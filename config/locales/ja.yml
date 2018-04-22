@@ -13,16 +13,16 @@ ja:
         account:
           attributes:
             user_name:
-              invalid: には英数字(a～z、A～Z、0～9)とピリオド(.)のみ使用できます。
+              invalid: には英数字(a～z、A～Z、0～9)のみ使用できます。
             email:
               invalid: の書式が違います。
             password:
               blank: の入力は必須です。
+              invalid: は半角英数字をそれぞれ1種類以上含む8文字以上の文字列にしてください。
             password_confirmation:
               confirmation: がパスワードと一致しません。
   validations:
     blank: の入力は必須です。
     over_length: は%{max_length}文字以内で入力してください。
-    not_enough_length: は%{min_length}文字以上で入力してください。
     not_within_length_range: は%{min_length}文字以上%{max_length}文字以内で入力してください。
     already_used: はすでに使用されています。
