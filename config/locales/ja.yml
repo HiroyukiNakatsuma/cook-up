@@ -26,3 +26,5 @@ ja:
     over_length: は%{max_length}文字以内で入力してください。
     not_within_length_range: は%{min_length}文字以上%{max_length}文字以内で入力してください。
     already_used: はすでに使用されています。
+  account:
+    signup_success: 会員登録が完了しました！

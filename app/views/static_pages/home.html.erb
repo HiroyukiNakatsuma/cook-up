@@ -1,4 +1,7 @@
 <% provide(:title, "Home") %>
+<% flash.each do |message_type, message| %>
+  <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+<% end %>
 <div class="jumbotron">
   <h1 class="display-3">Cook-up</h1>
   <p class="lead">Let's cook well with extra foods!</p>

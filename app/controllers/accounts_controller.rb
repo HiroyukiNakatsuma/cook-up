@@ -7,7 +7,8 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
-      # 保存の成功。
+      flash[:success] = I18n.t("account.signup_success")
+      redirect_to root_path
     else
       render 'new'
     end
