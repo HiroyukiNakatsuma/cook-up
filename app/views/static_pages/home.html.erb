@@ -1,9 +1,11 @@
 <% provide(:title, "Home") %>
-<% flash.each do |message_type, message| %>
-  <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-<% end %>
 <div class="jumbotron">
   <h1 class="display-3">Cook-up</h1>
   <p class="lead">Let's cook well with extra foods!</p>
-  <p><%= link_to "Sign Up", signup_path, class: 'btn btn-lg btn-primary' %></p>
+  <% if logged_in? %>
+    <p><%= link_to "ログアウト", logout_path, method: :delete, class: 'btn btn-lg' %></p>
+  <% else %>
+    <p><%= link_to "ログイン", login_path, class: 'btn btn-lg' %></p>
+    <p><%= link_to "無料会員登録", signup_path, class: 'btn btn-lg btn-primary' %></p>
+  <% end %>
 </div>
