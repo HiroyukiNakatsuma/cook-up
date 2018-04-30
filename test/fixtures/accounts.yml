@@ -1,0 +1,6 @@
+michael:
+  last_name: Sample
+  first_name: Test
+  user_name: test01
+  email: test01@example.com
+  password_digest: <%= Account.digest('foobar01') %>

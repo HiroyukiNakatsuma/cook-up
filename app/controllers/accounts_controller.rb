@@ -7,7 +7,8 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
-      flash[:success] = I18n.t("account.signup_success")
+      log_in @account
+      flash[:success] = I18n.t("account.signup.success")
       redirect_to root_path
     else
       render 'new'
@@ -19,5 +20,4 @@ class AccountsController < ApplicationController
   def account_params
     params.require(:account).permit(:last_name, :first_name, :user_name, :email, :password, :password_confirmation)
   end
-
 end
