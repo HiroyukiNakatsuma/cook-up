@@ -154,7 +154,7 @@ class AccountTest < ActiveSupport::TestCase
     assert_not @account.valid?
   end
 
-  test "authenticated? should return false for a user with nil digest" do
+  test "authenticated? should return false for a account with nil digest" do
     assert_not @account.authenticated?('')
   end
 end
