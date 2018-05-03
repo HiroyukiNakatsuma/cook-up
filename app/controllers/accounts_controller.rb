@@ -10,8 +10,7 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
     if @account.save
       log_in @account
-      flash[:success] = I18n.t("account.signup.success")
-      redirect_to root_path
+      redirect_with_success_message(I18n.t("account.signup.success"))
     else
       render 'new'
     end
@@ -24,8 +23,7 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     if @account.update_attributes(account_params)
-      flash[:success] = I18n.t("account.update.success")
-      redirect_to root_path
+      redirect_with_success_message(I18n.t("account.update.success"))
     else
       render 'edit'
     end
@@ -42,5 +40,10 @@ class AccountsController < ApplicationController
       flash[:danger] = I18n.t("account.login.need")
       redirect_to login_url
     end
+  end
+
+  def redirect_with_success_message(message)
+    flash[:success] = message
+    redirect_to root_path
   end
 end
