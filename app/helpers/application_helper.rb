@@ -9,4 +9,9 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def redirect_root_with_success_message(message)
+    flash[:success] = message
+    redirect_to root_path
+  end
 end

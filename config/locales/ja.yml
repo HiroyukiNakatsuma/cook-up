@@ -34,3 +34,8 @@ ja:
       need: ログインが必要です。
     update:
       success: 会員情報を更新しました！
+    withdraw:
+      success: 退会が完了しました。
+  session:
+    logout:
+      success: ログアウトしました。

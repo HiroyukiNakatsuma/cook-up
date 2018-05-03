@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/signup', to: 'accounts#create'
   get '/config', to: 'accounts#edit'
   patch '/accounts/update', to: 'accounts#update'
+  get '/withdraw', to: 'accounts#withdraw'
+  delete '/withdraw', to: 'accounts#delete'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

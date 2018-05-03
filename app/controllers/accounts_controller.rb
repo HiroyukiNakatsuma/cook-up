@@ -1,6 +1,8 @@
 class AccountsController < ApplicationController
 
-  before_action :check_logged_in, only: [:edit, :update]
+  include ApplicationHelper
+
+  before_action :check_logged_in, only: [:edit, :update, :withdraw, :delete]
 
   def new
     @account = Account.new
@@ -10,7 +12,7 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
     if @account.save
       log_in @account
-      redirect_with_success_message(I18n.t("account.signup.success"))
+      redirect_root_with_success_message(I18n.t("account.signup.success"))
     else
       render 'new'
     end
@@ -23,10 +25,19 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(current_account.id)
     if @account.update_attributes(account_params)
-      redirect_with_success_message(I18n.t("account.update.success"))
+      redirect_root_with_success_message(I18n.t("account.update.success"))
     else
       render 'edit'
     end
+  end
+
+  def withdraw
+  end
+
+  def delete
+    Account.find(current_account.id).destroy
+    log_out
+    redirect_root_with_success_message(I18n.t("account.withdraw.success"))
   end
 
   private
@@ -41,10 +52,5 @@ class AccountsController < ApplicationController
       flash[:danger] = I18n.t("account.login.need")
       redirect_to login_url
     end
-  end
-
-  def redirect_with_success_message(message)
-    flash[:success] = message
-    redirect_to root_path
   end
 end

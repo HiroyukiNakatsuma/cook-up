@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  include ApplicationHelper
+
   def new
   end
 
@@ -17,6 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
-    redirect_to root_url
+    redirect_root_with_success_message(I18n.t("session.logout.success"))
   end
 end

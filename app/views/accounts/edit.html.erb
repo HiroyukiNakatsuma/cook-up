@@ -2,6 +2,9 @@
 <% provide(:button_text, "更新") %>
 <% provide(:submit_url, accounts_update_path) %>
 <h1>会員情報</h1>
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6">
   <%= render 'form' %>
+</div>
+<div class="withdraw-link">
+  <p><%= link_to "サービスを退会する", withdraw_path %></p>
 </div>
