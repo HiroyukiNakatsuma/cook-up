@@ -1,0 +1,28 @@
+<%= form_for(@account, url: yield(:submit_url)) do |f| %>
+  <%= render 'shared/error_messages' %>
+  <div class="form-input">
+    <%= f.label :last_name, "姓" %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="form-input">
+    <%= f.label :first_name, "名" %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="form-input">
+    <%= f.label :user_name, "ユーザネーム" %>
+    <%= f.text_field :user_name, class: 'form-control' %>
+  </div>
+  <div class="form-input">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-input">
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="form-input">
+    <%= f.label :password_confirmation, "確認用パスワード" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/signup', to: 'accounts#new'
   post '/signup', to: 'accounts#create'
+  get '/config', to: 'accounts#edit'
+  patch '/accounts/update', to: 'accounts#update'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
