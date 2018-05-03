@@ -10,12 +10,12 @@ class AccountsEditTest < ActionDispatch::IntegrationTest
     log_in_as(@account)
     get config_path
     assert_template 'accounts/edit'
-    patch "/accounts/#{@account.id}/update", params: {account: {last_name: "",
-                                                                first_name: "",
-                                                                user_name: "",
-                                                                email: "foo@invalid",
-                                                                password: "foo",
-                                                                password_confirmation: "bar"}}
+    patch accounts_update_path, params: {account: {last_name: "",
+                                                   first_name: "",
+                                                   user_name: "",
+                                                   email: "foo@invalid",
+                                                   password: "foo",
+                                                   password_confirmation: "bar"}}
     assert_template 'accounts/edit'
   end
 
@@ -27,12 +27,12 @@ class AccountsEditTest < ActionDispatch::IntegrationTest
     first_name = "Bar"
     user_name = "FooBar"
     email = "foo@bar.com"
-    patch "/accounts/#{@account.id}/update", params: {account: {last_name: last_name,
-                                                                first_name: first_name,
-                                                                user_name: user_name,
-                                                                email: email,
-                                                                password: "",
-                                                                password_confirmation: ""}}
+    patch accounts_update_path, params: {account: {last_name: last_name,
+                                                   first_name: first_name,
+                                                   user_name: user_name,
+                                                   email: email,
+                                                   password: "",
+                                                   password_confirmation: ""}}
     assert_not flash.empty?
     assert_redirected_to root_path
     @account.reload
@@ -53,12 +53,12 @@ class AccountsEditTest < ActionDispatch::IntegrationTest
     first_name = "Bar"
     user_name = "FooBar"
     email = "foo@bar.com"
-    patch "/accounts/#{@account.id}/update", params: {account: {last_name: last_name,
-                                                                first_name: first_name,
-                                                                user_name: user_name,
-                                                                email: email,
-                                                                password: "",
-                                                                password_confirmation: ""}}
+    patch accounts_update_path, params: {account: {last_name: last_name,
+                                                   first_name: first_name,
+                                                   user_name: user_name,
+                                                   email: email,
+                                                   password: "",
+                                                   password_confirmation: ""}}
     assert_not flash.empty?
     assert_redirected_to login_path
     @account.reload

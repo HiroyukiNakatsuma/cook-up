@@ -21,7 +21,7 @@ class AccountsController < ApplicationController
   end
 
   def update
-    @account = Account.find(params[:id])
+    @account = Account.find(current_account.id)
     if @account.update_attributes(account_params)
       redirect_with_success_message(I18n.t("account.update.success"))
     else
