@@ -15,6 +15,14 @@ class AccountsController < ApplicationController
     end
   end
 
+  def edit
+    if logged_in?
+      @account = current_account
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def account_params
