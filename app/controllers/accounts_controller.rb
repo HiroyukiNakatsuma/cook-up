@@ -34,6 +34,7 @@ class AccountsController < ApplicationController
 
   def delete
     Account.find(current_account.id).destroy
+    log_out
     redirect_root_with_success_message(I18n.t("account.withdraw.success"))
   end
 
