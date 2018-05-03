@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
 
+  include ApplicationHelper
+
   before_action :check_logged_in, only: [:edit, :update, :withdraw, :delete]
 
   def new
@@ -50,10 +52,5 @@ class AccountsController < ApplicationController
       flash[:danger] = I18n.t("account.login.need")
       redirect_to login_url
     end
-  end
-
-  def redirect_root_with_success_message(message)
-    flash[:success] = message
-    redirect_to root_path
   end
 end
