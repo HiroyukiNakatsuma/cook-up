@@ -25,4 +25,10 @@ class ActionDispatch::IntegrationTest
                                         password: password,
                                         remember_me: remember_me}}
   end
+
+  def log_out_as
+    forget(current_account)
+    session.delete(:account_id)
+    @current_account = nil
+  end
 end

@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
 
+  before_action :check_logged_in, only: [:edit, :update]
+
   def new
     @account = Account.new
   end
@@ -16,10 +18,16 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    if logged_in?
-      @account = current_account
-    else
+    @account = current_account
+  end
+
+  def update
+    @account = Account.find(params[:id])
+    if @account.update_attributes(account_params)
+      flash[:success] = I18n.t("account.update.success")
       redirect_to root_path
+    else
+      render 'edit'
     end
   end
 
@@ -27,5 +35,12 @@ class AccountsController < ApplicationController
 
   def account_params
     params.require(:account).permit(:last_name, :first_name, :user_name, :email, :password, :password_confirmation)
+  end
+
+  def check_logged_in
+    unless logged_in?
+      flash[:danger] = I18n.t("account.login.need")
+      redirect_to login_url
+    end
   end
 end

@@ -22,7 +22,8 @@ class Account < ApplicationRecord
   has_secure_password
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,255}+\z/i
   validates :password,
-            format: {with: VALID_PASSWORD_REGEX}
+            format: {with: VALID_PASSWORD_REGEX},
+            allow_nil: true
 
   def Account.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
