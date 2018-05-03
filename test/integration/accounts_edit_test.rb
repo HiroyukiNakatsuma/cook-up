@@ -46,6 +46,8 @@ class AccountsEditTest < ActionDispatch::IntegrationTest
     get config_path
     assert_not flash.empty?
     assert_redirected_to login_path
+    log_in_as(@account)
+    assert_redirected_to config_path
   end
 
   test "update need login" do

@@ -37,6 +37,7 @@ class AccountsController < ApplicationController
 
   def check_logged_in
     unless logged_in?
+      store_location
       flash[:danger] = I18n.t("account.login.need")
       redirect_to login_url
     end
