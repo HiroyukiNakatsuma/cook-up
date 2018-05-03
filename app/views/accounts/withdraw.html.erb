@@ -1,0 +1,6 @@
+<% provide(:title, "Withdraw") %>
+<h1>退会</h1>
+<div class="col-md-6">
+  <p>※退会した場合、サービスの一部機能が使用できなくなり、設定した情報も削除されます。</p>
+  <%= link_to '<button type="button" class="btn btn-primary">退会する</button>'.html_safe, withdraw_path, method: :delete %>
+</div>
