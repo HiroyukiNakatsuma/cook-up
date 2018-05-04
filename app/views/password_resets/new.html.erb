@@ -1,0 +1,11 @@
+<% provide(:title, "Forgot password") %>
+<h1>パスワード再設定</h1>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+    <div class="form-input">
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+    <%= f.submit "再設定用メールを送信", class: "btn btn-primary" %>
+  <% end %>
+</div>

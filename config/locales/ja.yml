@@ -39,3 +39,9 @@ ja:
   session:
     logout:
       success: ログアウトしました。
+  password_reset:
+    send_mail:
+      info: パスワード再設定用メールを送信しました。メールが届かない場合は、メールアドレスを再度ご確認ください。
+  account_mailer:
+    password_reset:
+      subject: 【パスワード再設定】cook-up

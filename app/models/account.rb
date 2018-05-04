@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   before_save {self.email.downcase!}
 
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :reset_token
 
   validates :last_name,
             presence: {message: I18n.t("validations.blank")},
@@ -50,5 +50,17 @@ class Account < ApplicationRecord
   # ログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # パスワード再設定の属性を設定する
+  def create_reset_digest
+    self.reset_token = Account.new_token
+    update_attribute(:reset_digest, Account.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  # パスワード再設定のメールを送信する
+  def send_password_reset_email
+    AccountMailer.password_reset(self).deliver_now
   end
 end
