@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get '/password_resets/new', to: 'password_resets#new'
   post '/password_resets', to: 'password_resets#create'
   get '/password_resets/:reset_token/edit', to: 'password_resets#edit'
+  patch '/password_resets/:reset_token', to: 'password_resets#update'
 end

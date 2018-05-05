@@ -1,2 +1,17 @@
-<h1>PasswordResets#edit</h1>
-<p>Find me in app/views/password_resets/edit.html.erb</p>
+<% provide(:title, "Reset password") %>
+<h1>パスワード再設定</h1>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for(@account, url: "/password_resets/#{params[:reset_token]}") do |f| %>
+    <%= render 'shared/error_messages' %>
+    <%= hidden_field_tag :email, @account.email %>
+    <div class="form-input">
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="form-input">
+      <%= f.label :password_confirmation, "確認用パスワード" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  <% end %>
+</div>

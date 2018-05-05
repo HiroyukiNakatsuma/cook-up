@@ -41,7 +41,12 @@ ja:
       success: ログアウトしました。
   password_reset:
     send_mail:
+      blank: メールアドレスを入力してください。
       info: パスワード再設定用メールを送信しました。メールが届かない場合は、メールアドレスを再度ご確認ください。
+    expiration:
+      over: パスワード再設定の有効期限が過ぎています。再度メール送信を行ってください。
+    update:
+      success: パスワードの再設定が完了しました！
   account_mailer:
     password_reset:
       subject: 【パスワード再設定】cook-up
