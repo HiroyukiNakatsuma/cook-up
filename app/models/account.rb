@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
-  before_save {self.email.downcase!}
+  before_save :downcase_email
 
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :reset_token
 
   validates :last_name,
             presence: {message: I18n.t("validations.blank")},
@@ -42,13 +42,36 @@ class Account < ApplicationRecord
   end
 
   # 渡されたトークンがダイジェストと一致したらtrueを返す
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   # ログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # パスワード再設定の属性を設定する
+  def create_reset_digest
+    self.reset_token = Account.new_token
+    update_columns(reset_digest: Account.digest(reset_token), reset_sent_at: Time.zone.now)
+  end
+
+  # パスワード再設定のメールを送信する
+  def send_password_reset_email
+    AccountMailer.password_reset(self).deliver_now
+  end
+
+  # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
+  private
+
+  def downcase_email
+    self.email = email.downcase
   end
 end

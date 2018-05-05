@@ -8,6 +8,7 @@
     </div>
     <div class="form-input">
       <%= f.label :password, "パスワード" %>
+      <%= link_to "（パスワードを忘れた方）", password_resets_new_path %>
       <%= f.password_field :password, class: 'form-control' %>
     </div>
     <%= f.label :remember_me, class: 'checkbox inline' do %>
